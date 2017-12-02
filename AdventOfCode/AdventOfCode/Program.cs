@@ -30,19 +30,42 @@ namespace AdventOfCode
             reader.Close();
             reader.Dispose();
             input = input.Remove(input.Length - 1);
-            Console.Write(input);
+            //Console.Write(input);
 
-           
             int[] ia = input.Split(';').Select(n => Convert.ToInt32(n)).ToArray();
 
+            int CalculatedCaptcha = 0;
+            int tray1 = ia[1], tray2 = ia[0];
 
-            foreach (int item in ia)
+            if (tray1 == tray2 )
             {
-                Console.Write(item);
+                CalculatedCaptcha += tray1;
+
             }
 
-            //Console.WriteLine(" ");
-            //Console.WriteLine(Tchar.ToString() + " characters");
+            for ( int i = 0; i < ia.Length; i++)
+            {
+                if (tray1 == ia[i]) { 
+                    if (tray2 != tray1)
+                    {
+                        CalculatedCaptcha += tray1;
+                    }
+                    else
+                    {
+                        CalculatedCaptcha += tray1;
+                    }
+                }
+
+                tray2 = tray1;
+                tray1 = ia[i];
+            }
+
+            if (ia[0] == ia[ia.Length-1])
+            {
+                CalculatedCaptcha += ia[0];
+
+            }
+            Console.Write(CalculatedCaptcha);
             Console.ReadLine();
         }
     }
