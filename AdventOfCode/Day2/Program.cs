@@ -35,6 +35,7 @@ namespace Day2
             int counter = 0;
             //int arraysAmount = 0;
             string tray = "";
+            int CRC = 0;
             for (int i = 0; i < linesAmount; i++)
             {
                 string line = inputLines[i];
@@ -44,7 +45,7 @@ namespace Day2
                 {
                     string tray2 = $"{line[y]}";
 
-                    if ( (tray == "\t") && (tray2 != "\t") )
+                    if ((tray == "\t") && (tray2 != "\t"))
                     {
                         counter++;
                     }
@@ -60,34 +61,59 @@ namespace Day2
                         break;
                     }
                 }
-                tray = "";
                 counter++;
+                tray = "";
 
-            }
-
-            int CRC = 0;
-            string letter = "";
-            for ( int y = 0; y < counter; y++)
-            {
-                string array = Arrays[y];
-
-                letter = $"{array[0]}";
+                string array = Arrays[0];
                 int smallest = 0;
-                int.TryParse(letter, out smallest);
+                int.TryParse(array, out smallest);
                 int biggest = smallest;
-                foreach (var number in array)
+                for (int t = 0; t < counter; t++)
                 {
-                    letter = $"{number}";
+                    array = Arrays[t];
+
                     int lowNumber = 0;
-                    int.TryParse(letter, out lowNumber);
+                    int.TryParse(array, out lowNumber);
                     if (lowNumber > biggest)
                         biggest = lowNumber;
                     if (lowNumber < smallest)
                         smallest = lowNumber;
-                        
                 }
+                Console.WriteLine($"diff = {Math.Abs(biggest - smallest)}");
+
                 CRC += Math.Abs(biggest - smallest);
+                
+                for (int p = 0; p < counter; p++)
+                {
+                    Arrays[p] = "";
+                }
+                counter = 0;
+
             }
+
+            //int CRC = 0;
+            //string letter = "";
+            //for ( int y = 0; y < counter; y++)
+            //{
+            //    string array = Arrays[y];
+
+            //    letter = $"{array[0]}";
+            //    int smallest = 0;
+            //    int.TryParse(letter, out smallest);
+            //    int biggest = smallest;
+            //    foreach (var number in array)
+            //    {
+            //        letter = $"{number}";
+            //        int lowNumber = 0;
+            //        int.TryParse(letter, out lowNumber);
+            //        if (lowNumber > biggest)
+            //            biggest = lowNumber;
+            //        if (lowNumber < smallest)
+            //            smallest = lowNumber;
+
+            //    }
+            //    CRC += Math.Abs(biggest - smallest);
+            //}
 
             Console.WriteLine($"CRC: {CRC}");
 
