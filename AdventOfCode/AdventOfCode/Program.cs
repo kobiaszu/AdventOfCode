@@ -12,8 +12,8 @@ namespace AdventOfCode
         static void Main(string[] args)
         {
 
-            char ch;
-            int Tchar = 0;
+            //char ch;
+            //int Tchar = 0;
             StreamReader reader;
             string input = "";
             //int i = 0;
