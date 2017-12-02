@@ -33,7 +33,7 @@ namespace Day2
 
             string[] Arrays = new string[1000];
             int counter = 0;
-
+            //int arraysAmount = 0;
             string tray = "";
             for (int i = 0; i < linesAmount; i++)
             {
@@ -65,9 +65,31 @@ namespace Day2
 
             }
 
-            fore        
-            Console.WriteLine(Arrays[2]);
+            int CRC = 0;
+            string letter = "";
+            for ( int y = 0; y < counter; y++)
+            {
+                string array = Arrays[y];
 
+                letter = $"{array[0]}";
+                int smallest = 0;
+                int.TryParse(letter, out smallest);
+                int biggest = smallest;
+                foreach (var number in array)
+                {
+                    letter = $"{number}";
+                    int lowNumber = 0;
+                    int.TryParse(letter, out lowNumber);
+                    if (lowNumber > biggest)
+                        biggest = lowNumber;
+                    if (lowNumber < smallest)
+                        smallest = lowNumber;
+                        
+                }
+                CRC += Math.Abs(biggest - smallest);
+            }
+
+            Console.WriteLine($"CRC: {CRC}");
 
             Console.ReadKey();
 
